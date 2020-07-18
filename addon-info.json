@@ -1,0 +1,6 @@
+{
+  "name": "openai.vim",
+  "description": "A vim plugin for auto-completing a line of text with OpenAI's GPT-3 API.",
+  "author": "Jessie Frazelle <jess@oxide.computer>",
+  "repository" : {"type": "git", "url": "https://github.com/jessfraz/openai.vim.git"}
+}
