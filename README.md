@@ -41,3 +41,5 @@ append the result in the lines following.
 
 Or you can use whatever your `<Leader>` key is + `o` to complete the selection
 or line.
+
+![demo](demo.gif)
