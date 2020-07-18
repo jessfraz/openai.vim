@@ -14,7 +14,12 @@ function! openai#Complete()
 	if len(text) < 1
 		" Get the current line instead.
 		let end_line = getpos(".")[1]
-		let text = getline(".")
+		let lines = getline(0, end_line)
+		let clean_lines = []
+		for line in lines
+			let clean_lines += [substitute(trim(line), '\n', '', 'g')]
+		endfor
+		let text = join(clean_lines, "\\n")
 	endif
 	if len(text) < 1
 		echohl Error
