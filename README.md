@@ -42,4 +42,6 @@ append the result in the lines following.
 Or you can use whatever your `<Leader>` key is + `o` to complete the selection
 or line.
 
+As seen in the gif below this is better for written words than code.
+
 ![demo](demo.gif)
