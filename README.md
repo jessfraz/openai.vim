@@ -7,8 +7,14 @@ A vim plugin for auto-completing a line of text with
 > functional AI-powered completion check out 
 > [Codata](https://www.codota.com/)'s [TabNine Vim Plugin](https://www.tabnine.com/install/vim/).
 
-<!-- START doctoc -->
-<!-- END doctoc -->
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [Installation](#installation)
+- [Usage](#usage)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Installation
 
