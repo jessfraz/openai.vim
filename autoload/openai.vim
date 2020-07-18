@@ -24,10 +24,13 @@ function! openai#Complete()
 	endif
 
 	" Curl the OpenAI API and pipe the result to jq.
-	" TODO: Update this URL and jq pipe when we know it.
-	let output = trim(system("curl -s -u :${OPENAI_API_KEY}" https://api.openai.com/))
+	let openai_api_key = $OPENAI_API_KEY
+	" TODO: iterate over choices.
+	let command = "curl -sSL -H 'Content-Type: application/json' -H 'Authorization: Bearer " . openai_api_key . "' -d '{\"prompt\":\"" . text . "\"}' https://api.openai.com/v1/engines/davinci/completions | jq --raw-output .choices[0].text"
+	let output = trim(system(command))
+	echom output
 
-	" Append the text back to the selection or current line
+	" Append the text back to the selection or current line.
 	call append(end_line, split(output, "\n"))
 endfunction
 
