@@ -26,9 +26,11 @@ function! openai#Complete()
 	" Curl the OpenAI API and pipe the result to jq.
 	let openai_api_key = $OPENAI_API_KEY
 	" TODO: iterate over choices.
-	let command = "curl -sSL -H 'Content-Type: application/json' -H 'Authorization: Bearer " . openai_api_key . "' -d '{\"prompt\":\"" . text . "\"}' https://api.openai.com/v1/engines/davinci/completions | jq --raw-output .choices[0].text"
-	let output = trim(system(command))
-	echom output
+	let command = "curl -sSL -H 'Content-Type: application/json' -H 'Authorization: Bearer " . openai_api_key . "' -d '{\"prompt\":\"" . substitute(trim(text), '"', '\\"', "g") . "\"}' https://api.openai.com/v1/engines/davinci/completions"
+	let curl_output = trim(system(command))
+	echom curl_output
+	sleep 5
+	let output = trim(system("echo '" . curl_output . "' | jq --raw-output .choices[0].text"))
 
 	" Append the text back to the selection or current line.
 	call append(end_line, split(output, "\n"))
@@ -44,5 +46,9 @@ function! GetVisualSelection()
 	endif
 	let lines[-1] = lines[-1][: column_end - (&selection == 'inclusive' ? 1 : 2)]
 	let lines[0] = lines[0][column_start - 1:]
-	return join(lines, "\n")
+	let clean_lines = []
+	for line in lines
+		let clean_lines += [substitute(trim(line), '\n', '', 'g')]
+	endfor
+	return join(clean_lines, "\\n")
 endfunction
