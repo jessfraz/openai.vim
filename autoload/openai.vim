@@ -28,8 +28,6 @@ function! openai#Complete()
 	" TODO: iterate over choices.
 	let command = "curl -sSL -H 'Content-Type: application/json' -H 'Authorization: Bearer " . openai_api_key . "' -d '{\"prompt\":\"" . substitute(trim(text), '"', '\\"', "g") . "\"}' https://api.openai.com/v1/engines/davinci/completions"
 	let curl_output = trim(system(command))
-	echom curl_output
-	sleep 5
 	let output = trim(system("echo '" . curl_output . "' | jq --raw-output .choices[0].text"))
 
 	" Append the text back to the selection or current line.
