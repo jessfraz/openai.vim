@@ -6,6 +6,7 @@ let g:autoloaded_openai = 1
 " OpenAIComplete takes in either the visual selection of text or the line the
 " cursor is currently on (if there is no visual selection) and appends the
 " completed text from the OpenAI API.
+
 function! openai#Complete()
 	" Get the position of the cursor, if it is the start of the file we want
 	" a different behavior than if it is elsewhere.
